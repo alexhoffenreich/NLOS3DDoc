@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    }
+]

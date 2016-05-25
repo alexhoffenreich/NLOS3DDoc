@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="23"
+    density="xhdpi"
+    format="7"
+    timestamp="695211537682276" >
+
+    <task
+        name="javac"
+        duration="101" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="10" />
+    <task
+        name="verifier"
+        duration="1" />
+
+    <artifact
+        location="C:\Users\ADSL\AndroidStudioProjects\2 Gestures - new\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
+        type="DEX" />
+
+    <build timestamp="693698662223036" >
+        <artifact
+            location="C:\Users\ADSL\AndroidStudioProjects\2 Gestures - new\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build timestamp="694106188466875" >
+        <artifact
+            location="C:\Users\ADSL\AndroidStudioProjects\2 Gestures - new\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_0\classes.dex"
+            type="DEX" />
+    </build>
+    <build timestamp="695113413095649" >
+        <artifact
+            location="C:\Users\ADSL\AndroidStudioProjects\2 Gestures - new\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_7\classes.dex"
+            type="DEX" />
+    </build>
+    <build timestamp="695211537682276" >
+        <artifact
+            location="C:\Users\ADSL\AndroidStudioProjects\2 Gestures - new\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
+            type="DEX" />
+    </build>
+
+</instant-run>
