@@ -23,20 +23,23 @@ public class Step {
         this.procedure = procedure;
         operations = new ArrayList<>();
         NodeList op_nodes = step_element.getChildNodes();
-        for (int i=0;i<op_nodes.getLength(); i++){
-            operations.add(new Operation(this,(Element) op_nodes.item(i)));
+        for (int i = 0; i < op_nodes.getLength(); i++) {
+            operations.add(new Operation(this, (Element) op_nodes.item(i)));
         }
     }
 
 
-    public void start() {
+    public void moveToFirstOperation() {
         cur_operation = operations.get(0);
-        cur_operation.execute();
+        runCurrentOperation();
+    }
+
+    public void runCurrentOperation(){
+        cur_operation.run();
         procedure.handleEndOfOperation();
         if (cur_operation.equals(operations.get(operations.size() - 1)))
             procedure.handleEndOfStep();
     }
-
 
     public Procedure getProcedure() {
         return procedure;
@@ -44,5 +47,13 @@ public class Step {
 
     public Operation getCurrentOperation() {
         return cur_operation;
+    }
+
+    public void moveToNextOperation() {
+        if (!cur_operation.equals(operations.get(operations.size() - 1)))
+        {
+            cur_operation = operations.get(operations.lastIndexOf(cur_operation) + 1);
+            runCurrentOperation();
+        }
     }
 }

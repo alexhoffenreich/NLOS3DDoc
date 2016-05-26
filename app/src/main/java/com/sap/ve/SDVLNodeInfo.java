@@ -9,12 +9,12 @@ public class SDVLNodeInfo extends ListSelectionItem
 	public String nodeName;
 	public String assetID;
 	public String uniqueID;
-	public ArrayList<Long> parentNodes = new ArrayList<Long>();
-	public ArrayList<Long> childNodes = new ArrayList<Long>();
+	public ArrayList<Long> parentNodes = new ArrayList<>();
+	public ArrayList<Long> childNodes = new ArrayList<>();
 	public int flags;
 	public float opacity;
 	public int highlightColor;
-	public ArrayList<SDVLURI> uriList = new ArrayList<SDVLURI>();
+	public ArrayList<SDVLURI> uriList = new ArrayList<>();
 
 	public boolean isVisible()
 	{
@@ -25,6 +25,7 @@ public class SDVLNodeInfo extends ListSelectionItem
 	{
 		return (flags & DVLNODEFLAG.SELECTED) != 0;
 	}
+
 
 	@Override
 	public String toString()

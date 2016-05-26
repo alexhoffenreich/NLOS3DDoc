@@ -1,6 +1,7 @@
 package com.example.NLOS3DDoc.AnimationHandler;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,22 +15,25 @@ public class Procedure {
     private List<Step> steps;
     private Step cur_step;
     private ProcedureEventHandler procedure_event;
-    private Node procedure_node;
+    private Element procedure_element;
 
 
-    public Procedure(Node procedure_node) {
-        this.procedure_node = procedure_node;
+    public Procedure(Element procedure_element) {
+        this.procedure_element = procedure_element;
         steps = new ArrayList<>();
-
-        //todo: populate steps
-        // TODO: 5/25/2016 set private members
+        id = procedure_element.getAttribute("id");
+        title = procedure_element.getElementsByTagName("title").item(0).getTextContent();
+        NodeList steps_node_list = procedure_element.getElementsByTagName("steps");
+        for (int i = 0; i < steps_node_list.getLength(); i++) {
+            steps.add(new Step((Element)steps_node_list.item(i),this));
+        }
 
     }
 
     public boolean moveToNextStep (){
         if (!isLastStep()){
             cur_step = steps.get(steps.lastIndexOf(cur_step)+1);
-            cur_step.execute();
+            cur_step.moveToFirstOperation();
             return true;
         } else
         {
@@ -40,7 +44,7 @@ public class Procedure {
     public boolean moveToPreviousStep (){
         if (!isFirstStep()){
             cur_step = steps.get(steps.lastIndexOf(cur_step)-1);
-            cur_step.execute();
+            cur_step.moveToFirstOperation();
             return true;
         } else
         {

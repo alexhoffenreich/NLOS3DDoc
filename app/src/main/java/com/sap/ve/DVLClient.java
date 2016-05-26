@@ -1,10 +1,9 @@
 package com.sap.ve;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
+
+import com.example.NLOS3DDoc.AnimationHandler.DVL;
 
 public class DVLClient
 {
@@ -12,34 +11,15 @@ public class DVLClient
     //private static DVLScene m_scene;
     //private static DVLRenderer m_renderer;
     private static Context context;
-    public static long first_selected_node_id;
-    public static int number_of_selected_nodes;
 
     public static boolean m_continueLoading = true;
 	
 	public static void startLoading() { m_continueLoading = true; }
 	public static void cancelLoading() { m_continueLoading = false; }//use this method to interrupt file loading [see how m_continueLoading variable is used]
 
-	public static void OnNodeSelectionChanged(long hScene, int numberOfSelectedNodes, final long idFirstSelectedNode)
+	public static void OnNodeSelectionChanged(long hScene, int numberOfSelectedNodes, long idFirstSelectedNode)
 	{
-        first_selected_node_id = idFirstSelectedNode;
-        number_of_selected_nodes = numberOfSelectedNodes;
-
-
-        /*SDVLNodeInfo inf;
-        inf = new SDVLNodeInfo();
-        DVLTypes.DVLRESULT res = m_core.GetRenderer().GetAttachedScene().RetrieveNodeInfo(idFirstSelectedNode, DVLTypes.DVLNODEINFO.NAME,inf);
-        if (res.equals(DVLTypes.DVLRESULT.OK)){
-
-        }*/
-        ((Activity)getContext()).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //getCore().GetRenderer().ZoomTo(DVLTypes.DVLZOOMTO.NODE,idFirstSelectedNode,1.0f);
-            }
-        });
-        //
-		Log.i("OnNodeSelectionChanged", "Node selected: " + idFirstSelectedNode );
+		DVL.getInstance().triggerSelectionChanged( hScene, numberOfSelectedNodes, idFirstSelectedNode);
 
 		//ToDo: you can cache currently selected node id here
 	}
@@ -88,10 +68,11 @@ public class DVLClient
 		FINISHED;
 
 		public static DVLSTEPEVENT fromInt(int i) { return values()[i]; }
-	};
+	}
 
 	public static void OnStepEvent(int type, long stepId)
 	{
+		DVL.triggerSceneStepEvent(type,stepId);
 		//ToDo: you can use this callback to switch currently selected step in your UI
 	}
 

@@ -9,9 +9,13 @@ import com.sap.ve.DVLScene;
 import com.sap.ve.DVLTypes;
 import com.sap.ve.SDVLMatrix;
 import com.sap.ve.SDVLNodeIDsArrayInfo;
+import com.sap.ve.SDVLNodeInfo;
+import com.sap.ve.SDVLPartsListInfo;
+import com.sap.ve.SDVLProcedure;
 import com.sap.ve.SDVLProceduresInfo;
 import com.sap.ve.SDVLStep;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +29,17 @@ public class DVL {
     private SDVLNodeIDsArrayInfo selected_nodes;
     private float fade_time;
     private boolean init_ok = false;
+    private SDVLPartsListInfo m_partsListInfo;
+    private ArrayList<SDVLProcedure> portfolios;
+    private ArrayList<SDVLProcedure> procedures;
+    private DVLSceneEvent dvl_scene_events;
+    public ArrayList<SDVLProcedure> getPortfolios() {
+        return portfolios;
+    }
+
+    public ArrayList<SDVLProcedure> getProcedures() {
+        return procedures;
+    }
 
     private DVL() {
     }
@@ -42,6 +57,17 @@ public class DVL {
                 if (renderer.GetAttachedScene() != null) {
                     this.scene = renderer.GetAttachedScene();
                     init_ok = true;
+                    SDVLProceduresInfo m_proceduresInfo = new SDVLProceduresInfo();
+                    scene.RetrieveProcedures(m_proceduresInfo);
+                    portfolios = m_proceduresInfo.portfolios;
+                    procedures = m_proceduresInfo.procedures;
+                    m_partsListInfo = new SDVLPartsListInfo();
+                    scene.BuildPartsList(DVLTypes.DVLPARTSLIST.RECOMMENDED_uMaxParts,
+                            DVLTypes.DVLPARTSLIST.RECOMMENDED_uMaxNodesInSinglePart,
+                            DVLTypes.DVLPARTSLIST.RECOMMENDED_uMaxPartNameLength,
+                            DVLTypes.DVLPARTSLISTTYPE.ALL, DVLTypes.DVLPARTSLISTSORT.NAME_ASCENDING,
+                            DVLTypes.DVLID_INVALID, "", m_partsListInfo);
+
                 } else {
                     Log.e("DVL.init", "AttachedScene = null !!");
                 }
@@ -119,4 +145,16 @@ public class DVL {
             renderer.ResetView();
         }
     }
+
+
+    public void triggerSelectionChanged(long hScene, int numberOfSelectedNodes, long idFirstSelectedNode) {
+        List<SDVLNodeInfo> nodes = new ArrayList<>();
+
+    }
+
+    public static void triggerSceneStepEvent (int type, long stepId) {
+
+    }
+
+
 }

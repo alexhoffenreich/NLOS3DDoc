@@ -127,14 +127,14 @@ class CustomRenderer implements GLSurfaceView.Renderer
 	private DVLCore m_core;
 	private DVLRenderer m_renderer;
 	private DVLScene m_scene;
-	private SDVLProceduresInfo m_proceduresInfo;
-	private SDVLPartsListInfo m_partsListInfo;
+	//private SDVLProceduresInfo m_proceduresInfo;
+	//private SDVLPartsListInfo m_partsListInfo;
 	private GestureHandler m_gestures;
 	private Context m_context;
 
-	public SDVLPartsListInfo getPartsListInfo() {
+	/*public SDVLPartsListInfo getPartsListInfo() {
 		return m_partsListInfo;
-	}
+	}*/
 
 	public CustomRenderer(Context context, DVLCore core, GestureHandler gestures)
 	{
@@ -170,16 +170,6 @@ class CustomRenderer implements GLSurfaceView.Renderer
 
 		m_renderer.AttachScene(m_scene);
 
-		m_proceduresInfo = new SDVLProceduresInfo();
-		m_scene.RetrieveProcedures(m_proceduresInfo);
-
-
-
-		//m_scene.ActivateStep(m_proceduresInfo.portfolios.get(0).steps.get(0).id, true, true);
-
-		m_partsListInfo = new SDVLPartsListInfo();
-		m_scene.BuildPartsList(DVLPARTSLIST.RECOMMENDED_uMaxParts, DVLPARTSLIST.RECOMMENDED_uMaxNodesInSinglePart, DVLPARTSLIST.RECOMMENDED_uMaxPartNameLength,
-				DVLPARTSLISTTYPE.ALL, DVLPARTSLISTSORT.NAME_ASCENDING, DVLTypes.DVLID_INVALID, "", m_partsListInfo);
 		DVLClient.setContext(m_context);
 		DVL.getInstance().init(m_core);
 
