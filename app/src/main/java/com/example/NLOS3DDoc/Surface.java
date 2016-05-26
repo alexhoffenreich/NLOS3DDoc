@@ -1,14 +1,20 @@
 package com.example.NLOS3DDoc;
 
-import com.example.NLOS3DDoc.AnimationHandler.DVL;
-import com.sap.ve.*;
-import com.sap.ve.DVLTypes.*;
-
+import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.os.Environment;
-import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+
+import com.example.NLOS3DDoc.DVL.DVL;
+import com.sap.ve.DVLClient;
+import com.sap.ve.DVLCore;
+import com.sap.ve.DVLRenderer;
+import com.sap.ve.DVLScene;
+import com.sap.ve.DVLTypes.DVLRENDEROPTION;
+import com.sap.ve.DVLTypes.DVLRENDEROPTIONF;
+import com.sap.ve.DVLTypes.DVLRESULT;
+import com.sap.ve.SDVLMatrix;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -21,9 +27,34 @@ public class Surface extends GLSurfaceView
 	private DVLCore m_core;
 	private GestureHandler m_gestures;
 	private CustomRenderer custom_renderder;
+
+	public Surface(Context context) {
+		super(context);
+		init();
+	}
+
+	public Surface(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init();
+	}
+
 	public CustomRenderer getCustomRenderder(){
 		return custom_renderder;
 	}
+
+	void init() {
+		m_core = ((MainActivity) getContext()).getCore();
+		m_gestures = new GestureHandler();
+
+		setEGLContextFactory(new ContextFactory());
+		setEGLConfigChooser(new ConfigChooser());
+		custom_renderder = new CustomRenderer(getContext(), m_core, m_gestures);
+		setRenderer(custom_renderder);
+		setOnTouchListener(m_gestures);
+
+
+	}
+
 	private static class ConfigChooser implements GLSurfaceView.EGLConfigChooser
 	{
 		private static int EGL_OPENGL_ES2_BIT = 4;
@@ -36,6 +67,7 @@ public class Surface extends GLSurfaceView
 			EGL10.EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
 			EGL10.EGL_NONE
 			};
+		private int[] mValue = new int[1];
 
 		public EGLConfig chooseConfig(EGL10 egl, EGLDisplay display)
 		{
@@ -89,34 +121,6 @@ public class Surface extends GLSurfaceView
 
 			return defaultValue;
 		}
-
-		private int[] mValue = new int[1];
-	}
-
-	void init()
-	{
-		m_core = ((MainActivity) getContext()).getCore();
-		m_gestures = new GestureHandler();
-
-		setEGLContextFactory(new ContextFactory());
-		setEGLConfigChooser(new ConfigChooser());
-		custom_renderder = new CustomRenderer(getContext(), m_core, m_gestures);
-		setRenderer(custom_renderder);
-		setOnTouchListener(m_gestures);
-
-
-	}
-
-	public Surface(Context context)
-	{
-		super(context);
-		init();
-	}
-
-	public Surface(Context context, AttributeSet attrs)
-	{
-		super(context, attrs);
-		init();
 	}
 }
 

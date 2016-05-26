@@ -1,2 +1,0 @@
-CHANGED,C:\Users\ADSL\AndroidStudioProjects\2 Gestures - new\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
-CHANGED,C:\Users\ADSL\AndroidStudioProjects\2 Gestures - new\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\example\Example2\AnimationHandler\DVL$override.class

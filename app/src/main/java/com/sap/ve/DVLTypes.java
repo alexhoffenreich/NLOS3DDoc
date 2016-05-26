@@ -84,8 +84,7 @@ public class DVLTypes
 		public int toInt() { return ordinal() - 19; }
 		public boolean Failed() { return ordinal() < 19; }
 		public boolean Succeeded() { return ordinal() > 19; }
-	};
-
+	}
 
 
 	//
@@ -114,8 +113,7 @@ public class DVLTypes
 
 		/// same as ::RESTORE, but also does IDVLRenderer::SetIsolatedNode() with ::DVLID_INVALID parameter
 		RESTORE_REMOVEISOLATION
-	};
-
+	}
 
 
 	//
@@ -161,7 +159,7 @@ public class DVLTypes
 
 		/// Show all hotspots or not, default: OFF. This is only working for 2D .cgm scenes.
 		SHOW_ALL_HOTSPOTS,
-	};
+	}
 
 	//
 	//DVLRENDEROPTIONF
@@ -184,8 +182,7 @@ public class DVLTypes
 		/// Maximum amount of video memory (in megabytes) that DVL Core may use for loading meshes
 		/// Default: 256 MB on iPad and 512 MB on other platforms
 		VIDEO_MEMORY_SIZE,
-	};
-
+	}
 
 
 	//
@@ -205,8 +202,7 @@ public class DVLTypes
 
 		/// Make selected nodes and all their children 'hidden'
 		HIDE_SELECTED,
-	};
-
+	}
 
 
 	//
@@ -226,9 +222,74 @@ public class DVLTypes
 
 		/// Dynamic labels XML
 		DYNAMICLABELS,
-	};
+	}
 
 
+	/// Defines the type of parts to put in the list
+	public enum DVLPARTSLISTTYPE {
+		/// Build a list using all the nodes
+		ALL,
+
+		/// Build a list using only the visible nodes
+		VISIBLE,
+
+		/// Build a list using only the nodes, consumed by a particular step (step DVLID is passed as a parameter to the BuildPartsList() call)
+		CONSUMED_BY_STEP,
+	}
+
+
+	/// Defines the sorting order for the parts list
+	public enum DVLPARTSLISTSORT {
+		/// Sort from A to Z
+		NAME_ASCENDING,
+
+		/// Sort from Z to A
+		NAME_DESCENDING,
+
+		/// Sort by the number of nodes in the part, parts with smaller number of nodes go first
+		COUNT_ASCENDING,
+
+		/// Sort by the number of nodes in the part, parts with larger number of nodes go first
+		COUNT_DESCENDING,
+	}
+
+
+	/// Defines the type of node search to perform
+	public enum DVLFINDNODETYPE {
+		/// Find node by "node name"
+		NODE_NAME,
+
+		/// Find node by "asset id" (asset id is stored inside some VDS files [it is optional])
+		ASSET_ID,
+
+		/// Find node by "unique id" (unique id is stored inside some VDS files [it is optional])
+		UNIQUE_ID,
+
+		/// Find node by "DS selector id" (unique id is stored inside some VDS files [it is optional])
+		DSSELECTOR_ID,
+	}
+
+
+	/// Defines the string comparison mode
+	public enum DVLFINDNODEMODE {
+		/// Match nodes by comparing node name/assetid/uniqueid with "str" (case sensitive, fastest option [does buffer compare without UTF8 parsing])
+		EQUAL,
+
+		/// Match nodes by comparing node name/assetid/uniqueid with "str" (case insensitive, UTF8-aware)
+		EQUAL_CASE_INSENSITIVE,
+
+		/// Match nodes by finding "str" substring in node name/assetid/uniqueid (case sensitive, UTF8-aware)
+		SUBSTRING,
+
+		/// Match nodes by finding "str" substring in node name/assetid/uniqueid (case insensitive, UTF8-aware)
+		SUBSTRING_CASE_INSENSITIVE,
+
+		/// Match nodes by comparing first "strlen(str)" symbols of node name/assetid/uniqueid with "str" (case sensitive, UTF8-aware)
+		STARTS_WITH,
+
+		/// Match nodes by comparing first "strlen(str)" symbols of node name/assetid/uniqueid with "str" (case insensitive, UTF8-aware)
+		STARTS_WITH_CASE_INSENSITIVE,
+	}
 
 	//
 	//DVLNODEFLAG
@@ -253,8 +314,6 @@ public class DVLTypes
 		public static final int BILLBOARD_LOCK_TO_VIEWPORT			= 0x0100;
 	}
 
-
-
 	//
 	//DVLFLAGOP
 	//
@@ -276,9 +335,7 @@ public class DVLTypes
 
 		/// Do the operation recursively for all the subitems
 		public static final int MODIFIER_RECURSIVE		= 0x80;
-	};
-
-
+	}
 
 	//
 	//DVLSCENEINFO
@@ -294,8 +351,6 @@ public class DVLTypes
 		/// Retrieve scene dimensions
 		public static final int DIMENSIONS				= 0x0008;
 	}
-
-
 
 	//
 	//DVLNODEINFO
@@ -322,98 +377,27 @@ public class DVLTypes
 		public static final int URI						= 0x0100;
 	}
 
-
-
 	//
 	//DVLPARTSLIST
 	//
 	public class DVLPARTSLIST
 	{
 		/// Recommended number of parts for a BuildPartsList() call
-		public static final int RECOMMENDED_uMaxParts					= 1000;
-		
+		public static final int RECOMMENDED_uMaxParts = 10000;
+
 		/// Recommended limitation of nodes in a single part for BuildPartsList() call
 		public static final int RECOMMENDED_uMaxNodesInSinglePart		= 1000;
-		
+
 		/// Recommended limitation of part name's length for BuildPartsList() call
 		public static final int RECOMMENDED_uMaxPartNameLength			= 200;
-		
+
 		/// Do not limit the number of parts in BuildPartsList() call
 		public static final int UNLIMITED_uMaxParts						= 0;
-		
+
 		/// Do not limit the number of nodes in a part for BuildPartsList() call
 		public static final int UNLIMITED_uMaxNodesInSinglePart			= 0;
-		
+
 		/// Do not limit the part's name length for BuildPartsList() call
 		public static final int UNLIMITED_uMaxPartNameLength			= 0;
-	}
-
-	/// Defines the type of parts to put in the list
-	public enum DVLPARTSLISTTYPE
-	{
-		/// Build a list using all the nodes
-		ALL,
-
-		/// Build a list using only the visible nodes
-		VISIBLE,
-
-		/// Build a list using only the nodes, consumed by a particular step (step DVLID is passed as a parameter to the BuildPartsList() call)
-		CONSUMED_BY_STEP,
-	}
-
-	/// Defines the sorting order for the parts list
-	public enum DVLPARTSLISTSORT
-	{
-		/// Sort from A to Z
-		NAME_ASCENDING,
-
-		/// Sort from Z to A
-		NAME_DESCENDING,
-
-		/// Sort by the number of nodes in the part, parts with smaller number of nodes go first
-		COUNT_ASCENDING,
-
-		/// Sort by the number of nodes in the part, parts with larger number of nodes go first
-		COUNT_DESCENDING,
-	}
-
-
-
-	/// Defines the type of node search to perform
-	public enum DVLFINDNODETYPE
-	{
-		/// Find node by "node name"
-		NODE_NAME,
-
-		/// Find node by "asset id" (asset id is stored inside some VDS files [it is optional])
-		ASSET_ID,
-
-		/// Find node by "unique id" (unique id is stored inside some VDS files [it is optional])
-		UNIQUE_ID,
-
-	    /// Find node by "DS selector id" (unique id is stored inside some VDS files [it is optional])
-	    DSSELECTOR_ID,
-	}
-
-	/// Defines the string comparison mode
-	public enum DVLFINDNODEMODE
-	{
-		/// Match nodes by comparing node name/assetid/uniqueid with "str" (case sensitive, fastest option [does buffer compare without UTF8 parsing])
-		EQUAL,
-
-		/// Match nodes by comparing node name/assetid/uniqueid with "str" (case insensitive, UTF8-aware)
-		EQUAL_CASE_INSENSITIVE,
-
-		/// Match nodes by finding "str" substring in node name/assetid/uniqueid (case sensitive, UTF8-aware)
-		SUBSTRING,
-
-		/// Match nodes by finding "str" substring in node name/assetid/uniqueid (case insensitive, UTF8-aware)
-		SUBSTRING_CASE_INSENSITIVE,
-
-		/// Match nodes by comparing first "strlen(str)" symbols of node name/assetid/uniqueid with "str" (case sensitive, UTF8-aware)
-		STARTS_WITH,
-
-		/// Match nodes by comparing first "strlen(str)" symbols of node name/assetid/uniqueid with "str" (case insensitive, UTF8-aware)
-		STARTS_WITH_CASE_INSENSITIVE,
 	}
 }

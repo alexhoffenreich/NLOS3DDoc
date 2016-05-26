@@ -15,9 +15,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.NLOS3DDoc.AnimationHandler.DVL;
+import com.example.NLOS3DDoc.DVL.DVL;
+import com.example.NLOS3DDoc.DVL.DVLSceneEventHandler;
+import com.example.NLOS3DDoc.Documentation.Structure.Module;
+import com.example.NLOS3DDoc.Documentation.Structure.ModuleLink;
+import com.example.NLOS3DDoc.Documentation.Structure.Modules;
 import com.sap.ve.DVLCore;
+import com.sap.ve.DVLRenderer;
+import com.sap.ve.DVLScene;
 import com.sap.ve.DVLTypes;
+import com.sap.ve.SDVLNodeInfo;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -42,13 +49,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         m_core = new DVLCore(getApplicationContext());
         setContentView(R.layout.main);
-
-
-
+        DVL.getInstance().setActivity(this);
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-
         dvl_surface = (com.example.NLOS3DDoc.Surface) findViewById(R.id.dvl_surface);
-
 
         modules = new Modules(this);
         dynamic_buttons = new ArrayList<>();
@@ -63,6 +66,14 @@ public class MainActivity extends Activity {
                 clearDynamicButtons();
                 //applyLabelsXML("towing_bar_labels");
                 //applyPaintXML("pdu_paint");
+            }
+        });
+
+        DVL.getInstance().setOnSelectEvent(new DVLSceneEventHandler() {
+            @Override
+            public void onSelectionChanged(DVLCore core, DVLRenderer renderer, DVLScene scene, final List<SDVLNodeInfo> selected_nodes) {
+                Toast.makeText(getApplicationContext(),
+                        DVL.getInstance().getNodeNames(selected_nodes.get(0).parentNodes).toString() + ", " + selected_nodes.get(0).nodeName, Toast.LENGTH_SHORT).show();
             }
         });
 
