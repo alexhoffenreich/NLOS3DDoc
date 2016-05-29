@@ -1,10 +1,12 @@
 package com.example.NLOS3DDoc.DVL;
 
 import android.app.Activity;
+import android.content.Context;
 import android.opengl.Matrix;
 import android.util.Log;
 
 import com.example.NLOS3DDoc.Documentation.Procedure.DVLCommand;
+import com.example.NLOS3DDoc.MyApplication;
 import com.sap.ve.DVLCore;
 import com.sap.ve.DVLRenderer;
 import com.sap.ve.DVLScene;
@@ -13,12 +15,16 @@ import com.sap.ve.SDVLMatrix;
 import com.sap.ve.SDVLNodeIDsArrayInfo;
 import com.sap.ve.SDVLNodeInfo;
 import com.sap.ve.SDVLPartsListInfo;
+import com.sap.ve.SDVLPartsListItem;
 import com.sap.ve.SDVLProcedure;
 import com.sap.ve.SDVLProceduresInfo;
 import com.sap.ve.SDVLStep;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -27,6 +33,7 @@ import java.util.Stack;
 public class DVL {
     private static DVL ourInstance = new DVL();
     private Activity activity;
+    private Context applicaion_context;
     private DVLScene scene;
     private DVLCore core;
     private DVLRenderer renderer;
@@ -34,10 +41,11 @@ public class DVL {
     private float fade_time;
     private boolean init_ok = false;
     private SDVLPartsListInfo m_partsListInfo;
-    private ArrayList<SDVLProcedure> portfolios;
-    private ArrayList<SDVLProcedure> procedures;
-    private DVLSceneEventHandler dvl_scene_event_handler;
+    private Map<String,SDVLProcedure> portfolios;
+    private Map<String,SDVLProcedure> procedures;
+    private OnDVLNodeSelectListener dvl_scene_event_handler;
     private Stack<DVLCommand> dvlCommands;
+    private HashMap<String, SDVLPartsListItem> parts;
 
     private DVL() {
 
@@ -55,21 +63,13 @@ public class DVL {
         this.activity = activity;
     }
 
-    public ArrayList<SDVLProcedure> getPortfolios() {
-        return portfolios;
-    }
-
-    public ArrayList<SDVLProcedure> getProcedures() {
-        return procedures;
-    }
-
 
 
     public void init(DVLCore core) {
         selected_nodes = new SDVLNodeIDsArrayInfo();
         if (core != null) {
             this.core = core;
-
+            applicaion_context = core.getContext();
             if (core.GetRenderer() != null) {
                 this.renderer = core.GetRenderer();
                 if (renderer.GetAttachedScene() != null) {
@@ -77,14 +77,28 @@ public class DVL {
                     init_ok = true;
                     SDVLProceduresInfo m_proceduresInfo = new SDVLProceduresInfo();
                     scene.RetrieveProcedures(m_proceduresInfo);
-                    portfolios = m_proceduresInfo.portfolios;
-                    procedures = m_proceduresInfo.procedures;
+
+                    procedures = new HashMap<>();
+                    for (SDVLProcedure procedure: m_proceduresInfo.procedures){
+                        procedures.put(procedure.name,procedure);
+                    }
+
+                    portfolios = new HashMap<>();
+                    for (SDVLProcedure procedure: m_proceduresInfo.portfolios){
+                        portfolios.put(procedure.name,procedure);
+                    }
+
                     m_partsListInfo = new SDVLPartsListInfo();
-                    scene.BuildPartsList(DVLTypes.DVLPARTSLIST.RECOMMENDED_uMaxParts,
-                            DVLTypes.DVLPARTSLIST.RECOMMENDED_uMaxNodesInSinglePart,
-                            DVLTypes.DVLPARTSLIST.RECOMMENDED_uMaxPartNameLength,
+                    scene.BuildPartsList(DVLTypes.DVLPARTSLIST.UNLIMITED_uMaxParts,
+                            DVLTypes.DVLPARTSLIST.UNLIMITED_uMaxNodesInSinglePart,
+                            DVLTypes.DVLPARTSLIST.UNLIMITED_uMaxPartNameLength,
                             DVLTypes.DVLPARTSLISTTYPE.ALL, DVLTypes.DVLPARTSLISTSORT.NAME_ASCENDING,
                             DVLTypes.DVLID_INVALID, "", m_partsListInfo);
+
+                    parts = new HashMap<>();
+                    for (SDVLPartsListItem item: m_partsListInfo.parts){
+                        parts.put(item.partName,item);
+                    }
 
                 } else {
                     Log.e("DVL.init", "AttachedScene = null !!");
@@ -143,15 +157,20 @@ public class DVL {
 
     public void setView(String view_name) {
         if (init_ok) {
-            SDVLProceduresInfo m_proceduresInfo = new SDVLProceduresInfo();
-            scene.RetrieveProcedures(m_proceduresInfo);
-            List<SDVLStep> standard_views = m_proceduresInfo.portfolios.get(0).steps;
+            try {
+                SDVLProceduresInfo m_proceduresInfo = new SDVLProceduresInfo();
+                scene.RetrieveProcedures(m_proceduresInfo);
+                List<SDVLStep> standard_views = portfolios.get("Standard Views").steps;
 
-            for (SDVLStep st : standard_views) {
-                if (st.name.equals(view_name)) {
-                    scene.ActivateStep(st.id, true, false);
+                for (SDVLStep st : standard_views) {
+                    if (st.name.equals(view_name)) {
+                        scene.ActivateStep(st.id, true, false);
+                    }
                 }
+            } catch (Exception e){
+                e.printStackTrace();
             }
+
         }
     }
 
@@ -205,13 +224,46 @@ public class DVL {
         return node_names;
     }
 
-    public void setOnSelectEvent(DVLSceneEventHandler handler) {
+    public void setOnSelectEvent(OnDVLNodeSelectListener handler) {
         dvl_scene_event_handler = handler;
         //todo: change implementation to support multiple handlers. Including remove handler.
     }
 
     public void addCommand(DVLCommand cmd) {
         dvlCommands.push(cmd);
+    }
+
+    public void applyLabelsXML(String labels_xml) {
+        try {
+
+            scene.ExecuteDynamicLabels(labels_xml);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("applyLabelsXMLFromFile", e.getMessage());
+
+        }
+
+    }
+
+
+    public void applyPaintXML(String paint_xml) {
+        try {
+
+            scene.Execute(DVLTypes.DVLEXECUTE.PAINTXML, new String(paint_xml));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("applyPaintXML", e.getMessage());
+
+        }
+    }
+
+
+    public void applyQuery (String query_string){
+        try {
+            scene.Execute(DVLTypes.DVLEXECUTE.QUERY,query_string);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

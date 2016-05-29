@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.NLOS3DDoc.DVL.DVL;
-import com.example.NLOS3DDoc.DVL.DVLSceneEventHandler;
+import com.example.NLOS3DDoc.DVL.OnDVLNodeSelectListener;
 import com.example.NLOS3DDoc.Documentation.Structure.Module;
 import com.example.NLOS3DDoc.Documentation.Structure.ModuleLink;
 import com.example.NLOS3DDoc.Documentation.Structure.Modules;
@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
     List<View> dynamic_buttons;
     private DVLCore m_core;
     private com.example.NLOS3DDoc.Surface dvl_surface;
-
+    DVL dvl = DVL.getInstance();
 
     /**
      * Called when the activity is first created.
@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         m_core = new DVLCore(getApplicationContext());
         setContentView(R.layout.main);
-        DVL.getInstance().setActivity(this);
+        dvl.setActivity(this);
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         dvl_surface = (com.example.NLOS3DDoc.Surface) findViewById(R.id.dvl_surface);
 
@@ -62,18 +62,18 @@ public class MainActivity extends Activity {
         show_all_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DVL.getInstance().resetView();
+                dvl.resetView();
                 clearDynamicButtons();
-                //applyLabelsXML("towing_bar_labels");
+                //applyLabelsXMLFromFile("towing_bar_labels");
                 //applyPaintXML("pdu_paint");
             }
         });
 
-        DVL.getInstance().setOnSelectEvent(new DVLSceneEventHandler() {
+        dvl.setOnSelectEvent(new OnDVLNodeSelectListener() {
             @Override
             public void onSelectionChanged(DVLCore core, DVLRenderer renderer, DVLScene scene, final List<SDVLNodeInfo> selected_nodes) {
                 Toast.makeText(getApplicationContext(),
-                        DVL.getInstance().getNodeNames(selected_nodes.get(0).parentNodes).toString() + ", " + selected_nodes.get(0).nodeName, Toast.LENGTH_SHORT).show();
+                        dvl.getNodeNames(selected_nodes.get(0).parentNodes).toString() + ", " + selected_nodes.get(0).nodeName, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -176,40 +176,16 @@ public class MainActivity extends Activity {
     ///// END OF NFC HANDLING
 
 
-    public void applyLabelsXML(String file_name) {
-        try {
-            InputStream in_s = getResources().openRawResource(getResources().getIdentifier(file_name, "raw", getPackageName()));
-            byte[] b = new byte[in_s.available()];
-            in_s.read(b);
-            m_core.GetRenderer().GetAttachedScene().ExecuteDynamicLabels(new String(b));
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("applyLabelsXML", e.getMessage());
 
-        }
-
-    }
-
-    public void applyPaintXML(String file_name) {
-        try {
-            InputStream in_s = getResources().openRawResource(getResources().getIdentifier(file_name, "raw", getPackageName()));
-            byte[] b = new byte[in_s.available()];
-            in_s.read(b);
-            m_core.GetRenderer().GetAttachedScene().Execute(DVLTypes.DVLEXECUTE.PAINTXML, new String(b));
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("applyPaintXML", e.getMessage());
-
-        }
-
-    }
 
 
     public void showItem(String item_name) {
         cur_module = modules.getModuleById(item_name);
-        DVL.getInstance().setView(cur_module.getDefaultView());
-        DVL.getInstance().selectNodes(item_name) ;
-        DVL.getInstance().zoom(true);
+
+        dvl.clearSelection();
+        dvl.setView(cur_module.getDefaultView());
+        dvl.selectNodes(item_name) ;
+        dvl.zoom(true);
         clearDynamicButtons();
         for (int i = 0; i < cur_module.getLinks().size(); i++) {
             ModuleLink cur_link = cur_module.getLinks().get(i);

@@ -164,7 +164,7 @@ class CustomRenderer implements GLSurfaceView.Renderer
 		m_renderer.SetOptionF(DVLRENDEROPTIONF.VIDEO_MEMORY_SIZE,1024.0f);
 
 		m_scene = new DVLScene(0, m_context);
-		res = m_core.LoadScene("file://" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/RFRL-Test 2.vds", null, m_scene);
+		res = m_core.LoadScene("file://" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/RFRL-Test 3.vds", null, m_scene);
 		if (res.Failed()){
 			Log.e("VDS","Failed to load ");
 			return;

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by alex-lenovi on 5/26/2016.
  */
-public interface DVLSceneEventHandler {
+public interface OnDVLNodeSelectListener {
     void onSelectionChanged(DVLCore core, DVLRenderer renderer, DVLScene scene, List<SDVLNodeInfo> selected_nodes);
 
 }

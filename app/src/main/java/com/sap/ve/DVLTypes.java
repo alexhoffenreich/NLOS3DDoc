@@ -383,7 +383,7 @@ public class DVLTypes
 	public class DVLPARTSLIST
 	{
 		/// Recommended number of parts for a BuildPartsList() call
-		public static final int RECOMMENDED_uMaxParts = 10000;
+		public static final int RECOMMENDED_uMaxParts = 1000;
 
 		/// Recommended limitation of nodes in a single part for BuildPartsList() call
 		public static final int RECOMMENDED_uMaxNodesInSinglePart		= 1000;

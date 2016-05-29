@@ -1,51 +1,27 @@
 [
     {
+        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\sys_description.xml",
+        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\sys_description.xml"
+    },
+    {
+        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\mclu_ri",
+        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\mclu_ri"
+    },
+    {
+        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\paint_xml.xsd",
+        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\paint_xml.xsd"
+    },
+    {
         "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\modules_index.xml",
         "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\modules_index.xml"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\mclu_ri",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\mclu_ri"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\paint_xml.xsd",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\paint_xml.xsd"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\pdu_paint.xml",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\pdu_paint.xml"
     },
     {
         "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\dynamic_labels.xsd",
         "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\dynamic_labels.xsd"
     },
     {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\modules_index.xml",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\modules_index.xml"
-    },
-    {
         "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\pdu_paint.xml",
         "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\pdu_paint.xml"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\dynamic_labels.xsd",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\dynamic_labels.xsd"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\sys_description.xml",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\sys_description.xml"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\tpdu_description",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\tpdu_description"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\tpdu_description",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\tpdu_description"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\dynamic_labels.xsd",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\dynamic_labels.xsd"
     },
     {
         "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\tpdu_description",
@@ -54,77 +30,5 @@
     {
         "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\towing_bar_labels",
         "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\towing_bar_labels"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\paint_xml.xsd",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\paint_xml.xsd"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\paint_xml.xsd",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\paint_xml.xsd"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\pdu_paint.xml",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\pdu_paint.xml"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\sys_description.xml",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\sys_description.xml"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\sys_description.xml",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\sys_description.xml"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\mclu_ri",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\mclu_ri"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\mclu_ri",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\mclu_ri"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\paint_xml.xsd",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\paint_xml.xsd"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\mclu_ri",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\mclu_ri"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\towing_bar_labels",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\towing_bar_labels"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\pdu_paint.xml",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\pdu_paint.xml"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\sys_description.xml",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\sys_description.xml"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\towing_bar_labels",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\towing_bar_labels"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\tpdu_description",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\tpdu_description"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\build\\intermediates\\res\\merged\\debug\\raw\\towing_bar_labels",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\NLOS3DDoc\\app\\src\\main\\res\\raw\\towing_bar_labels"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\dynamic_labels.xsd",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\dynamic_labels.xsd"
-    },
-    {
-        "merged": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\modules_index.xml",
-        "source": "C:\\Users\\ADSL\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\modules_index.xml"
-    },
-    {
-        "merged": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\build\\intermediates\\res\\merged\\debug\\raw\\modules_index.xml",
-        "source": "C:\\Users\\alex-lenovi\\AndroidStudioProjects\\2 Gestures - new\\app\\src\\main\\res\\raw\\modules_index.xml"
     }
 ]
