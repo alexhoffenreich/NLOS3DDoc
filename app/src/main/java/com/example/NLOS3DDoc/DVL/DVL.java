@@ -3,10 +3,10 @@ package com.example.NLOS3DDoc.DVL;
 import android.app.Activity;
 import android.content.Context;
 import android.opengl.Matrix;
+
 import android.util.Log;
 
 import com.example.NLOS3DDoc.Documentation.Procedure.DVLCommand;
-import com.example.NLOS3DDoc.MyApplication;
 import com.sap.ve.DVLCore;
 import com.sap.ve.DVLRenderer;
 import com.sap.ve.DVLScene;
@@ -20,7 +20,6 @@ import com.sap.ve.SDVLProcedure;
 import com.sap.ve.SDVLProceduresInfo;
 import com.sap.ve.SDVLStep;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +42,7 @@ public class DVL {
     private SDVLPartsListInfo m_partsListInfo;
     private Map<String,SDVLProcedure> portfolios;
     private Map<String,SDVLProcedure> procedures;
-    private OnDVLNodeSelectListener dvl_scene_event_handler;
+    private OnDVLNodeSelectListener dvl_node_select_listener;
     private Stack<DVLCommand> dvlCommands;
     private HashMap<String, SDVLPartsListItem> parts;
 
@@ -140,6 +139,20 @@ public class DVL {
 
     }
 
+    public void scale(float angle, float x_scale, float y_scale, float z_scale) {
+        if (init_ok) {
+            SDVLMatrix mat = new SDVLMatrix();
+            scene.GetNodeWorldMatrix(selected_nodes.nodes.get(0), mat);
+
+            Matrix.scaleM(mat.m, 0, x_scale, y_scale, z_scale);
+            scene.SetNodeWorldMatrix(selected_nodes.nodes.get(0), mat);
+        }
+
+    }
+
+
+
+
     public void zoom(boolean isolate) {
         if (init_ok) {
             if (isolate) {
@@ -189,10 +202,10 @@ public class DVL {
                 final List<SDVLNodeInfo> nodes = new ArrayList<>();
                 //todo: change implementation to all selected nodes, not only first
                 nodes.add(getNodeInfo(idFirstSelectedNode));
-                if (dvl_scene_event_handler != null) {
+                if (dvl_node_select_listener != null) {
 
                     try {
-                        dvl_scene_event_handler.onSelectionChanged(core, renderer, scene, nodes);
+                        dvl_node_select_listener.onSelectionChanged(core, renderer, scene, nodes);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -225,8 +238,8 @@ public class DVL {
     }
 
     public void setOnSelectEvent(OnDVLNodeSelectListener handler) {
-        dvl_scene_event_handler = handler;
-        //todo: change implementation to support multiple handlers. Including remove handler.
+        dvl_node_select_listener = handler;
+
     }
 
     public void addCommand(DVLCommand cmd) {
@@ -249,7 +262,7 @@ public class DVL {
     public void applyPaintXML(String paint_xml) {
         try {
 
-            scene.Execute(DVLTypes.DVLEXECUTE.PAINTXML, new String(paint_xml));
+            scene.Execute(DVLTypes.DVLEXECUTE.PAINTXML, paint_xml);
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("applyPaintXML", e.getMessage());
@@ -264,6 +277,10 @@ public class DVL {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void setNodeFlags(Long node_id, int flags){
+        scene.ChangeNodeFlags(node_id,flags, DVLTypes.DVLFLAGOP.SET);
     }
 
 }
