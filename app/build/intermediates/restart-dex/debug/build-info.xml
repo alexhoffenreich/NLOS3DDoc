@@ -4,7 +4,7 @@
     api-level="23"
     density="xhdpi"
     format="7"
-    timestamp="323628795663093" >
+    timestamp="489232185481803" >
 
     <task
         name="javac"
@@ -19,19 +19,6 @@
         name="verifier"
         duration="0" />
 
-    <artifact
-        location="C:\Users\alex-lenovi\AndroidStudioProjects\NLOS3DDoc\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_4\classes.dex"
-        type="DEX" />
-
-    <build timestamp="323448538565318" >
-        <artifact
-            location="C:\Users\alex-lenovi\AndroidStudioProjects\NLOS3DDoc\app\build\outputs\apk\app-debug.apk"
-            type="MAIN" />
-    </build>
-    <build timestamp="323628795663093" >
-        <artifact
-            location="C:\Users\alex-lenovi\AndroidStudioProjects\NLOS3DDoc\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_4\classes.dex"
-            type="DEX" />
-    </build>
+    <build timestamp="489232185481803" />
 
 </instant-run>

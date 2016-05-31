@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.Example2.test">
+    package="com.example.NLOS3DDoc.test">
 
     <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="23" />
 
@@ -9,8 +9,8 @@
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="com.example.Example2"
+                     android:targetPackage="com.example.NLOS3DDoc"
                      android:handleProfiling="false"
                      android:functionalTest="false"
-                     android:label="Tests for com.example.Example2"/>
+                     android:label="Tests for com.example.NLOS3DDoc"/>
 </manifest>

@@ -113,45 +113,39 @@ public class DVL {
         fade_time = 2f;
     }
 
+    public DVLScene getScene() {
+        return scene;
+    }
+
+    public DVLCore getCore() {
+        return core;
+    }
+
+    public DVLRenderer getRenderer() {
+        return renderer;
+    }
+
     public void selectNodes(String node_name) {
         if (init_ok) {
             scene.FindNodes(DVLTypes.DVLFINDNODETYPE.NODE_NAME, DVLTypes.DVLFINDNODEMODE.EQUAL_CASE_INSENSITIVE, node_name, selected_nodes);
         }
     }
 
-    public void move(float delta_x, float delta_y, float delta_z) {
-        if (init_ok) {
-            SDVLMatrix mat = new SDVLMatrix();
-            scene.GetNodeWorldMatrix(selected_nodes.nodes.get(0), mat);
-            Matrix.translateM(mat.m, 0, delta_x, delta_y, delta_z);
-            scene.SetNodeWorldMatrix(selected_nodes.nodes.get(0), mat);
+
+
+    private List<DVLNode> getNodes (String node_name, DVLTypes.DVLFINDNODETYPE search_type) {
+        List<DVLNode> nodes = new ArrayList<>();
+        SDVLNodeIDsArrayInfo nodes_info = new SDVLNodeIDsArrayInfo();
+        DVLTypes.DVLRESULT res = scene.FindNodes(search_type , DVLTypes.DVLFINDNODEMODE.EQUAL_CASE_INSENSITIVE, node_name, nodes_info);
+        if (res == DVLTypes.DVLRESULT.OK){
+            for (int i=0; i< nodes_info.nodes.size(); i++){
+                nodes.add(new DVLNode(nodes_info.nodes.get(i)));
+            }
         }
+        return nodes;
     }
 
-    public void rotate(float angle, float delta_x, float delta_y, float delta_z) {
-        if (init_ok) {
-            SDVLMatrix mat = new SDVLMatrix();
-            scene.GetNodeWorldMatrix(selected_nodes.nodes.get(0), mat);
-
-            Matrix.rotateM(mat.m, 0, angle, delta_x, delta_y, delta_z);
-            scene.SetNodeWorldMatrix(selected_nodes.nodes.get(0), mat);
-        }
-
-    }
-
-    public void scale(float angle, float x_scale, float y_scale, float z_scale) {
-        if (init_ok) {
-            SDVLMatrix mat = new SDVLMatrix();
-            scene.GetNodeWorldMatrix(selected_nodes.nodes.get(0), mat);
-
-            Matrix.scaleM(mat.m, 0, x_scale, y_scale, z_scale);
-            scene.SetNodeWorldMatrix(selected_nodes.nodes.get(0), mat);
-        }
-
-    }
-
-
-
+    //HERE
 
     public void zoom(boolean isolate) {
         if (init_ok) {
@@ -279,8 +273,8 @@ public class DVL {
         }
     }
 
-    public void setNodeFlags(Long node_id, int flags){
-        scene.ChangeNodeFlags(node_id,flags, DVLTypes.DVLFLAGOP.SET);
+    public void setNodeFlags(Long node_id, int flags, boolean value){
+        scene.ChangeNodeFlags(node_id,flags, value? DVLTypes.DVLFLAGOP.SET| DVLTypes.DVLFLAGOP.MODIFIER_RECURSIVE: DVLTypes.DVLFLAGOP.CLEAR| DVLTypes.DVLFLAGOP.MODIFIER_RECURSIVE );
     }
 
 }

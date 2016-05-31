@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\alex-lenovi\AndroidStudioProjects\NLOS3DDoc\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a9d55247067d3ae18500b170f138c5c4810399e5">
+        <dex dex="C:\Users\alex-lenovi\AndroidStudioProjects\NLOS3DDoc\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_111507db4f055d3d1d8ec80e254feba6edfcb41a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\alex-lenovi\AndroidStudioProjects\NLOS3DDoc\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b4b1792c82be7a1d3b2ab6703e71d69adde57241">
+        <dex dex="C:\Users\alex-lenovi\AndroidStudioProjects\NLOS3DDoc\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_15c41067a3ef44a28bb221da0713a6ccab9aec81\classes.dex" />
+    </item>
+
+</items>
